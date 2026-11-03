@@ -1,6 +1,13 @@
 # Use this workspace to collaborate
 workspace:
-  id: 87ee90ba-ed38-4418-88b3-ead8f814878a
+  id: baa4e89c-31db-4b31-bcaa-09b0d1dc1af8
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/SmartCart AI - Auth & Profile APIs: 575e0b4e-8961-4406-bb01-ef40e7211259
+    ../postman/collections/SmartCart AI - Auth & Profile APIs Copy: 6557a8af-10bd-4844-9ffc-2e5c69fee697
 
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:

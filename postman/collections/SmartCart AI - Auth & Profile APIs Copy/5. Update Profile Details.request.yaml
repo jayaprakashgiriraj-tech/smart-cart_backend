@@ -1,0 +1,13 @@
+$kind: http-request
+url: http://localhost/smartcart_backend/auth/update_profile.php
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "aarav.mehta@example.com",
+      "name": "Aarav Mehta Updated"
+    }
+order: 5000

@@ -1,0 +1,6 @@
+$kind: http-request
+url: http://localhost/smartcart_backend/auth/profile.php?email=aarav.mehta@example.com
+method: GET
+queryParams:
+  email: aarav.mehta@example.com
+order: 3000

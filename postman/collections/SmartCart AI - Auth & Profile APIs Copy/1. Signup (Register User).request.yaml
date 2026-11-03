@@ -1,0 +1,14 @@
+$kind: http-request
+url: http://localhost/smartcart_backend/auth/signup.php
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Aarav Mehta",
+      "email": "aarav.mehta@example.com",
+      "password": "password123"
+    }
+order: 1000

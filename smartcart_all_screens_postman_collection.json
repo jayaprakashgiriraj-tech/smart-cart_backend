@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "smartcart-ai-complete-api-collection",
+		"name": "SmartCart AI - Complete Backend APIs (All Screens)",
+		"description": "Comprehensive Postman collection for all SmartCart AI backend endpoints covering Home, Discover, Search, Product Details, AI Analysis, Comparisons, Wishlist, Cart, Price Tracking, and Preferences.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Authentication & Profile",
+			"item": [
+				{
+					"name": "Signup (Register)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Aarav Mehta\",\n  \"email\": \"aarav.mehta@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": "http://localhost/smartcart_backend/auth/signup.php"
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"aarav.mehta@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": "http://localhost/smartcart_backend/auth/login.php"
+					}
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/auth/profile.php?email=aarav.mehta@example.com"
+					}
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"aarav.mehta@example.com\",\n  \"name\": \"Aarav Mehta Updated\"\n}"
+						},
+						"url": "http://localhost/smartcart_backend/auth/update_profile.php"
+					}
+				},
+				{
+					"name": "Upload Profile Photo",
+					"request": {
+						"method": "POST",
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{"key": "email", "value": "aarav.mehta@example.com", "type": "text"},
+								{"key": "profile_image", "type": "file", "src": ""}
+							]
+						},
+						"url": "http://localhost/smartcart_backend/auth/upload_profile.php"
+					}
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"aarav.mehta@example.com\",\n  \"new_password\": \"newpassword123\"\n}"
+						},
+						"url": "http://localhost/smartcart_backend/auth/reset_password.php"
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Dashboard (Home Screen)",
+			"item": [
+				{
+					"name": "Home Dashboard Stats & Overview",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/dashboard/home_stats.php"
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Products & Categories",
+			"item": [
+				{
+					"name": "Get All 5 Categories",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/categories.php"
+					}
+				},
+				{
+					"name": "List Products by Category (Audio)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/list.php?category=Audio"
+					}
+				},
+				{
+					"name": "List Products by Category (Mobiles)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/list.php?category=Mobiles"
+					}
+				},
+				{
+					"name": "List Products by Category (Laptops)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/list.php?category=Laptops"
+					}
+				},
+				{
+					"name": "List Products by Category (Fashion)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/list.php?category=Fashion"
+					}
+				},
+				{
+					"name": "List Products by Category (Home Appliances)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/list.php?category=Home%20Appliances"
+					}
+				},
+				{
+					"name": "Get Product Detail (JBL Tune 510BT)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/detail.php?id=jbl_510bt"
+					}
+				},
+				{
+					"name": "Get Recommendations (Top Pick)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/recommendations.php?category=Audio"
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Search & Discovery",
+			"item": [
+				{
+					"name": "Search Products (Keyword: phone, max ₹25k)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/search.php?q=phone&max_price=25000&sort_by=price_asc"
+					}
+				},
+				{
+					"name": "Search Out-of-Stock Item (Test Unavailable status)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/search.php?q=Realme%2012%20Pro"
+					}
+				},
+				{
+					"name": "Search Empty Result (No items found)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/search.php?q=nonexistentproductxyz123"
+					}
+				},
+				{
+					"name": "Discover by Need Chip (Clear calls)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/discover.php?need=Clear%20calls"
+					}
+				},
+				{
+					"name": "Discover by Need Chip (Travel audio)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/products/discover.php?need=Travel%20audio"
+					}
+				}
+			]
+		},
+		{
+			"name": "5. AI Intelligence",
+			"item": [
+				{
+					"name": "Why This Fits You (AI Fit Analysis)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/ai/why_this_fits.php?product_id=jbl_510bt&budget=3000"
+					}
+				},
+				{
+					"name": "Smart Comparison Matrix (JBL vs Soundcore)",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/ai/compare.php?prod1=JBL%20Tune%20510BT&prod2=Soundcore%20H30i"
+					}
+				},
+				{
+					"name": "AI Review Analyzer & Sentiment",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/ai/review_analyzer.php?product_id=jbl_510bt"
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Wishlist",
+			"item": [
+				{
+					"name": "Toggle Add/Remove Wishlist",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"product_id\": \"jbl_510bt\",\n  \"price_drop_alert\": true\n}"
+						},
+						"url": "http://localhost/smartcart_backend/wishlist/toggle.php"
+					}
+				},
+				{
+					"name": "Get User Wishlist",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/wishlist/list.php?user_id=10"
+					}
+				}
+			]
+		},
+		{
+			"name": "7. Cart",
+			"item": [
+				{
+					"name": "Add to Cart",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"product_id\": \"jbl_510bt\",\n  \"quantity\": 1\n}"
+						},
+						"url": "http://localhost/smartcart_backend/cart/add.php"
+					}
+				},
+				{
+					"name": "Get Cart Items & Total",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/cart/list.php?user_id=10"
+					}
+				},
+				{
+					"name": "Remove Item from Cart",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"product_id\": \"jbl_510bt\"\n}"
+						},
+						"url": "http://localhost/smartcart_backend/cart/remove.php"
+					}
+				}
+			]
+		},
+		{
+			"name": "8. Price Tracking & Saved Comparisons",
+			"item": [
+				{
+					"name": "Get Price History Graph Data",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/price_tracking/history.php?product_id=jbl_510bt"
+					}
+				},
+				{
+					"name": "Set Target Price Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"product_id\": \"jbl_510bt\",\n  \"target_price\": 2499\n}"
+						},
+						"url": "http://localhost/smartcart_backend/price_tracking/set_alert.php"
+					}
+				},
+				{
+					"name": "Save Comparison Bookmark",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"prod1\": \"JBL Tune 510BT\",\n  \"prod2\": \"Soundcore H30i\",\n  \"title\": \"1 comparison · Online classes\"\n}"
+						},
+						"url": "http://localhost/smartcart_backend/comparisons/save.php"
+					}
+				},
+				{
+					"name": "Get Saved Comparisons",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/comparisons/saved.php?user_id=10"
+					}
+				}
+			]
+		},
+		{
+			"name": "9. Preferences (Settings)",
+			"item": [
+				{
+					"name": "Get User Preferences",
+					"request": {
+						"method": "GET",
+						"url": "http://localhost/smartcart_backend/preferences/get.php?user_id=10"
+					}
+				},
+				{
+					"name": "Save User Preferences",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 10,\n  \"categories\": [\"Audio\", \"Mobiles\", \"Laptops\"],\n  \"audio_budget\": 3000,\n  \"feature_priorities\": [\"Clear mic\", \"Comfort\", \"Battery\"],\n  \"price_drop_alerts\": true,\n  \"new_recommendations\": false,\n  \"use_shopping_history\": true\n}"
+						},
+						"url": "http://localhost/smartcart_backend/preferences/save.php"
+					}
+				}
+			]
+		}
+	]
+}
+
