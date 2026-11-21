@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "smartcart-affiliate-integration-v1",
+		"name": "Smart Cart AI - Affiliate & Creators API Integration",
+		"description": "Integration test collection for Amazon India Creators API (PA-API v5) and Flipkart Affiliate API in Smart Cart AI.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. API & Environment Health Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/integrations/api_status.php?test_ping=0",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"integrations",
+						"api_status.php"
+					],
+					"query": [
+						{
+							"key": "test_ping",
+							"value": "0",
+							"description": "Set to 1 to ping live APIs when credentials are configured"
+						}
+					]
+				},
+				"description": "Tests PHP extensions (curl, openssl, json, pdo_mysql), MySQL connection, table existence, and credential configuration status."
+			},
+			"response": []
+		},
+		{
+			"name": "2. Amazon Creators Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/integrations/amazon_search.php?query=JBL Tune 510BT&limit=5",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"integrations",
+						"amazon_search.php"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "JBL Tune 510BT"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				},
+				"description": "Performs AWS SigV4 signed SearchItems request to Amazon India PA-API v5."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Flipkart Affiliate Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/integrations/flipkart_search.php?query=JBL Tune 510BT&limit=5",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"integrations",
+						"flipkart_search.php"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "JBL Tune 510BT"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				},
+				"description": "Searches products on Flipkart Affiliate API using Fk-Affiliate headers."
+			},
+			"response": []
+		},
+		{
+			"name": "4. Compare Store Prices (Amazon vs Flipkart)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/integrations/compare_prices.php?product_id=jbl_510bt&product_name=JBL Tune 510BT&force_refresh=0",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"integrations",
+						"compare_prices.php"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "jbl_510bt"
+						},
+						{
+							"key": "product_name",
+							"value": "JBL Tune 510BT"
+						},
+						{
+							"key": "force_refresh",
+							"value": "0",
+							"description": "Set to 1 to bypass cache and query external APIs"
+						}
+					]
+				},
+				"description": "Compares Amazon and Flipkart prices, identifies lowest price, computes savings and returns UI card comparison payload."
+			},
+			"response": []
+		},
+		{
+			"name": "5. Synchronize Product Prices into Database",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_id\": \"jbl_510bt\",\n    \"product_name\": \"JBL Tune 510BT\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/integrations/sync_product_prices.php",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"integrations",
+						"sync_product_prices.php"
+					]
+				},
+				"description": "Queries external store APIs and updates store_platform_prices table with fresh prices and affiliate links."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost/smartcart_backend",
+			"type": "string"
+		}
+	]
+}
+

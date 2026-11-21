@@ -1,0 +1,6 @@
+# Block direct HTTP access to configuration and credentials
+<Files "*">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
